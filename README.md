@@ -23,7 +23,7 @@ Permite registrar alumnos, crear cursos y manejar inscripciones.
 
 ### 📚 Cursos
 - `POST /cursos` → crear curso  
-- `PATCH /cursos/{id}` → actualizar curso  
+- `PUT /cursos/{id}` → actualizar curso  
 - `DELETE /cursos/{id}` → borrado lógico  
 - `GET /cursos` → listar todos  
 - `GET /cursos/{id}` → ver detalle (con descripción y más info)  
