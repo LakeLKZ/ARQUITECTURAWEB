@@ -1,41 +1,38 @@
-# ARQUITECTURAWEB
-📘 Proyecto: Gestión de Alumnos y Cursos
+# 📘 Proyecto: Gestión de Alumnos y Cursos
 
-La aplicación es un sistema web simple para gestión de alumnos y cursos.
+La aplicación es un sistema web simple para **gestión de alumnos y cursos**.  
 Permite registrar alumnos, crear cursos y manejar inscripciones.
 
-📌 Funcionalidades principales
+---
 
-Registro/Login de alumnos usando alias + password.
+## 🚀 Funcionalidades principales
+- **Registro/Login de alumnos** usando `alias + password`.  
+- **Gestión de cursos**: crear, actualizar, eliminar lógicamente, listar y ver detalle (incluye descripción y cupos).  
+- **Inscripciones**: los alumnos pueden anotarse a cursos y se pueden consultar todos los alumnos inscriptos en un curso específico.  
 
-Gestión de cursos: crear, actualizar, eliminar lógicamente, listar y ver detalle (incluye descripción y cupos).
+---
 
-Inscripciones: los alumnos pueden anotarse a cursos y se pueden consultar todos los alumnos inscriptos en un curso específico.
+## 🌐 Endpoints
 
-📌 Endpoints
-Auth
+### 🔑 Auth
+- `POST /auth/register`
+- `POST /auth/login`
 
-POST /auth/register
+### 👨‍🎓 Alumnos
+- `GET /cursos/{cursoId}/alumnos` → ver todos los alumnos inscriptos en un curso
 
-POST /auth/login
+### 📚 Cursos
+- `POST /cursos` → crear curso  
+- `PATCH /cursos/{id}` → actualizar curso  
+- `DELETE /cursos/{id}` → borrado lógico  
+- `GET /cursos` → listar todos  
+- `GET /cursos/{id}` → ver detalle (con descripción y más info)  
 
-Alumnos
+---
 
-GET /cursos/{cursoId}/alumnos → ver todos los alumnos inscriptos en un curso
+## 📦 Interfaces
 
-Cursos
-
-POST /cursos → crear curso
-
-PATCH /cursos/{id} → actualizar curso
-
-DELETE /cursos/{id} → borrado lógico
-
-GET /cursos → listar todos
-
-GET /cursos/{id} → ver detalle (con descripción y más info)
-
-📌 Interfaces
+```ts
 // Alumno
 export interface Alumno {
   id: number;
