@@ -1,0 +1,73 @@
+<div class="alumno-container">
+  <h2>Menú de Alumno</h2>
+
+  <div class="user-info">
+    <p>Bienvenido, <strong>{{ nombreAlumno }}</strong></p>
+  </div>
+
+  <div class="alumno-tabs">
+    <button
+      (click)="activeTab = 'disponibles'"
+      [class.active]="activeTab === 'disponibles'"
+      class="tab-button">
+      Cursos Disponibles
+    </button>
+    <button
+      (click)="activeTab = 'mis-cursos'"
+      [class.active]="activeTab === 'mis-cursos'"
+      class="tab-button">
+      Mis Cursos
+    </button>
+  </div>
+
+  <!-- Tab: Cursos Disponibles -->
+  <div *ngIf="activeTab === 'disponibles'" class="tab-content">
+    <h3>Cursos Disponibles</h3>
+
+    <div *ngIf="cursosDisponibles.length === 0" class="no-cursos">
+      No hay cursos disponibles en este momento.
+    </div>
+
+    <div class="curso-card" *ngFor="let curso of cursosDisponibles">
+      <h4>{{ curso.titulo }}</h4>
+      <p>{{ curso.descripcion }}</p>
+      <p><strong>Fecha:</strong> {{ curso.fecha | date:'dd/MM/yyyy' }}</p>
+      <p><strong>Cupos disponibles:</strong> {{ curso.cuposDisponibles }} / {{ curso.cuposTotales }}</p>
+
+      <button
+        (click)="inscribirseACurso(curso.id)"
+        [disabled]="curso.cuposDisponibles === 0 || yaInscripto(curso.id)"
+        class="btn-inscribirse">
+        {{
+          yaInscripto(curso.id) ? 'Ya inscripto' :
+          (curso.cuposDisponibles === 0 ? 'Sin cupos' : 'Inscribirse')
+        }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Tab: Mis Cursos -->
+  <div *ngIf="activeTab === 'mis-cursos'" class="tab-content">
+    <h3>Mis Cursos</h3>
+
+    <div *ngIf="misCursos.length === 0" class="no-cursos">
+      No te has inscrito a ningún curso aún.
+    </div>
+
+    <div class="curso-card mis-cursos-card" *ngFor="let curso of misCursos">
+      <h4>{{ curso.titulo }}</h4>
+      <p>{{ curso.descripcion }}</p>
+      <p><strong>Fecha:</strong> {{ curso.fecha | date:'dd/MM/yyyy' }}</p>
+      <p><strong>Fecha de inscripción:</strong> {{ getFechaInscripcion(curso.id) | date:'dd/MM/yyyy' }}</p>
+      <p><strong>Estado:</strong> <span class="estado-inscripto">Inscripto</span></p>
+
+      <button
+        (click)="desinscribirseDelCurso(curso.id)"
+        class="btn-desinscribirse">
+        Desinscribirse
+      </button>
+    </div>
+  </div>
+
+  <button (click)="logout()" class="btn-logout">Cerrar Sesión</button>
+</div>

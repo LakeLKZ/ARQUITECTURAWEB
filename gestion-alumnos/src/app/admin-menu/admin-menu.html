@@ -1,0 +1,219 @@
+<div class="admin-container">
+  <h2>Panel de Administración</h2>
+
+  <!-- Vista Lista de Cursos -->
+  <div *ngIf="!selectedCurso" class="cursos-list">
+    <div class="section-header">
+      <h3>Gestión de Cursos</h3>
+      <button (click)="showCreateCurso()" class="btn-create">
+        + Crear Nuevo Curso
+      </button>
+    </div>
+
+    <!-- Formulario Crear Curso -->
+    <div *ngIf="showCreateForm" class="form-container">
+      <h4>Crear Nuevo Curso</h4>
+      <form (ngSubmit)="createCurso()">
+        <div class="form-group">
+          <label for="titulo">Título:</label>
+          <input
+            type="text"
+            id="titulo"
+            [(ngModel)]="createForm.titulo"
+            name="titulo"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="descripcion">Descripción:</label>
+          <textarea
+            id="descripcion"
+            [(ngModel)]="createForm.descripcion"
+            name="descripcion"
+            required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="fecha">Fecha:</label>
+          <input
+            type="date"
+            id="fecha"
+            [(ngModel)]="createForm.fecha"
+            name="fecha"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="cuposTotales">Cupos Totales:</label>
+          <input
+            type="number"
+            id="cuposTotales"
+            [(ngModel)]="createForm.cuposTotales"
+            name="cuposTotales"
+            min="1"
+            required>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-save">Crear</button>
+          <button type="button" (click)="cancelCreate()" class="btn-cancel">Cancelar</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Cursos Activos -->
+    <h4 class="section-subtitle">Cursos Activos</h4>
+    <div class="cursos-grid">
+      <div class="curso-card" *ngFor="let curso of cursosActivos">
+        <div class="curso-header">
+          <h4>{{ curso.titulo }}</h4>
+          <div class="curso-actions">
+            <button
+              (click)="viewCursoDetails(curso)"
+              class="btn-view"
+              title="Ver detalles">
+              👁️
+            </button>
+            <button
+              (click)="startEdit(curso)"
+              class="btn-edit"
+              title="Editar">
+              ✏️
+            </button>
+            <button
+              (click)="eliminarCurso(curso.id)"
+              class="btn-delete"
+              title="Eliminar">
+              🗑️
+            </button>
+          </div>
+        </div>
+
+        <p class="curso-descripcion">{{ curso.descripcion }}</p>
+        <div class="curso-meta">
+          <p><strong>Fecha:</strong> {{ curso.fecha }}</p>
+          <p><strong>Cupos:</strong> {{ curso.cuposDisponibles }} / {{ curso.cuposTotales }}</p>
+        </div>
+
+        <!-- Formulario de Edición Inline -->
+        <div *ngIf="editingCurso && editingCurso.id === curso.id" class="edit-form">
+          <form (ngSubmit)="saveEdit()">
+            <div class="form-group">
+              <label>Título:</label>
+              <input
+                type="text"
+                [(ngModel)]="editForm.titulo"
+                name="titulo"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label>Descripción:</label>
+              <textarea
+                [(ngModel)]="editForm.descripcion"
+                name="descripcion"
+                required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Fecha:</label>
+              <input
+                type="date"
+                [(ngModel)]="editForm.fecha"
+                name="fecha"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label>Cupos Totales:</label>
+              <input
+                type="number"
+                [(ngModel)]="editForm.cuposTotales"
+                name="cuposTotales"
+                min="1"
+                required>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-save">Guardar</button>
+              <button type="button" (click)="cancelEdit()" class="btn-cancel">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cursos Eliminados -->
+    <div *ngIf="cursosEliminados.length > 0" class="deleted-section">
+      <h4 class="section-subtitle">Cursos Eliminados</h4>
+      <div class="cursos-grid">
+        <div class="curso-card deleted" *ngFor="let curso of cursosEliminados">
+          <div class="curso-header">
+            <h4>{{ curso.titulo }}</h4>
+            <div class="curso-actions">
+              <button
+                (click)="viewCursoDetails(curso)"
+                class="btn-view"
+                title="Ver detalles">
+                👁️
+              </button>
+              <button
+                class="btn-edit disabled"
+                title="No se puede editar un curso eliminado"
+                disabled>
+                ✏️
+              </button>
+              <button
+                (click)="restaurarCurso(curso.id)"
+                class="btn-restore"
+                title="Restaurar curso">
+                ↻
+              </button>
+            </div>
+          </div>
+
+          <p class="curso-descripcion">{{ curso.descripcion }}</p>
+          <div class="curso-meta">
+            <p><strong>Fecha:</strong> {{ curso.fecha }}</p>
+            <p><strong>Cupos:</strong> {{ curso.cuposDisponibles }} / {{ curso.cuposTotales }}</p>
+            <p class="deleted-status"><strong>Estado:</strong> <span class="status-deleted">ELIMINADO</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vista Detalle de Curso -->
+  <div *ngIf="selectedCurso" class="curso-detail">
+    <div class="detail-header">
+      <button (click)="backToList()" class="btn-back">← Volver a la lista</button>
+      <h3>{{ selectedCurso.titulo }}</h3>
+    </div>
+
+    <div class="curso-info">
+      <p><strong>Descripción:</strong> {{ selectedCurso.descripcion }}</p>
+      <p><strong>Fecha:</strong> {{ selectedCurso.fecha }}</p>
+      <p><strong>Cupos:</strong> {{ selectedCurso.cuposDisponibles }} / {{ selectedCurso.cuposTotales }}</p>
+    </div>
+
+    <div class="alumnos-section">
+      <h4>Alumnos Inscriptos ({{ alumnosInscriptos.length }})</h4>
+
+      <div *ngIf="alumnosInscriptos.length === 0" class="no-data">
+        No hay alumnos inscriptos en este curso.
+      </div>
+
+      <div *ngIf="alumnosInscriptos.length > 0" class="alumnos-list">
+        <div class="alumno-item" *ngFor="let alumno of alumnosInscriptos">
+          <div class="alumno-info">
+            <span class="alumno-name">{{ alumno.nombre }} {{ alumno.apellido }}</span>
+            <span class="alumno-email">{{ alumno.email }}</span>
+            <span class="alumno-alias">@{{ alumno.alias }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button (click)="logout()" class="btn-logout">Cerrar Sesión</button>
+</div>

@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "alumnoId": 1,
+    "cursoId": 1,
+    "creadaEn": "2024-10-15"
+  },
+  {
+    "id": 2,
+    "alumnoId": 2,
+    "cursoId": 1,
+    "creadaEn": "2024-10-16"
+  },
+  {
+    "id": 3,
+    "alumnoId": 1,
+    "cursoId": 3,
+    "creadaEn": "2024-10-17"
+  }
+]

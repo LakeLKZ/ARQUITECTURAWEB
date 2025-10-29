@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "nombre": "Juan",
+    "apellido": "Pérez",
+    "email": "juan.perez@email.com",
+    "alias": "jperez",
+    "password": "123",
+    "fechaRegistro": "2024-10-01"
+  },
+  {
+    "id": 2,
+    "nombre": "María",
+    "apellido": "González",
+    "email": "maria.gonzalez@email.com",
+    "alias": "mgonzalez",
+    "password": "456",
+    "fechaRegistro": "2024-10-05"
+  },
+  {
+    "id": 3,
+    "nombre": "franco",
+    "apellido": "balmaceda",
+    "email": "francobalmacedalkz@gmail.com",
+    "alias": "admin",
+    "password": "123",
+    "fechaRegistro": "2025-10-29"
+  }
+]

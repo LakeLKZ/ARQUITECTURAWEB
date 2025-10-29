@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "titulo": "Angular Básico prueba",
+    "descripcion": "Curso introductorio de Angular para principiantes prueba",
+    "fecha": "2024-12-31",
+    "cuposTotales": 31,
+    "cuposDisponibles": 15,
+    "isDeleted": false
+  },
+  {
+    "id": 2,
+    "titulo": "Node.js Avanzado",
+    "descripcion": "Desarrollo backend con Node.js y Express",
+    "fecha": "2024-12-15",
+    "cuposTotales": 25,
+    "cuposDisponibles": 24,
+    "isDeleted": false
+  },
+  {
+    "id": 3,
+    "titulo": "TypeScript Fundamentals",
+    "descripcion": "Fundamentos de TypeScript para desarrollo moderno",
+    "fecha": "2024-12-10",
+    "cuposTotales": 20,
+    "cuposDisponibles": 8,
+    "isDeleted": false
+  },
+  {
+    "id": 4,
+    "titulo": "React Básico",
+    "descripcion": "Curso eliminado de React",
+    "fecha": "2024-11-20",
+    "cuposTotales": 15,
+    "cuposDisponibles": 15,
+    "isDeleted": true
+  }
+]

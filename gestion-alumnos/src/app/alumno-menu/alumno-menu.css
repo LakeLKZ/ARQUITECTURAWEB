@@ -1,0 +1,130 @@
+.alumno-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.user-info {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.alumno-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.tab-button.active {
+  border-bottom-color: #007bff;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.tab-button:hover {
+  background-color: #f8f9fa;
+}
+
+.tab-content {
+  margin-top: 20px;
+}
+
+.tab-content h3 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.curso-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.curso-card h4 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.curso-card p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.mis-cursos-card {
+  border-left: 4px solid #28a745;
+}
+
+.estado-inscripto {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.btn-inscribirse {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-inscribirse:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.btn-inscribirse:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.btn-desinscribirse {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-desinscribirse:hover {
+  background-color: #c82333;
+}
+
+.btn-logout {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.btn-logout:hover {
+  background-color: #c82333;
+}
+
+.no-cursos {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+}

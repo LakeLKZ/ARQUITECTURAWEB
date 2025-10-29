@@ -1,0 +1,116 @@
+<div class="login-container">
+  <div class="tabs">
+    <button
+      type="button"
+      (click)="activeTab = 'login'"
+      [class.active]="activeTab === 'login'"
+      class="tab-button">
+      Iniciar Sesión
+    </button>
+    <button
+      type="button"
+      (click)="activeTab = 'register'"
+      [class.active]="activeTab === 'register'"
+      class="tab-button">
+      Registrarse
+    </button>
+  </div>
+
+  <!-- Login Form -->
+  <div *ngIf="activeTab === 'login'">
+    <h2>Iniciar Sesión</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="alias">Alias:</label>
+        <input
+          type="text"
+          id="alias"
+          [(ngModel)]="alias"
+          name="alias"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          [(ngModel)]="password"
+          name="password"
+          required>
+      </div>
+
+      <button type="submit">Ingresar</button>
+
+      <div *ngIf="errorMessage" class="error">
+        {{ errorMessage }}
+      </div>
+    </form>
+  </div>
+
+  <!-- Register Form -->
+  <div *ngIf="activeTab === 'register'">
+    <h2>Registrarse</h2>
+    <form (ngSubmit)="onRegister()">
+      <div class="form-group">
+        <label for="regNombre">Nombre:</label>
+        <input
+          type="text"
+          id="regNombre"
+          [(ngModel)]="registerData.nombre"
+          name="regNombre"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="regApellido">Apellido:</label>
+        <input
+          type="text"
+          id="regApellido"
+          [(ngModel)]="registerData.apellido"
+          name="regApellido"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="regEmail">Email:</label>
+        <input
+          type="email"
+          id="regEmail"
+          [(ngModel)]="registerData.email"
+          name="regEmail"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="regAlias">Alias:</label>
+        <input
+          type="text"
+          id="regAlias"
+          [(ngModel)]="registerData.alias"
+          name="regAlias"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="regPassword">Password:</label>
+        <input
+          type="password"
+          id="regPassword"
+          [(ngModel)]="registerData.password"
+          name="regPassword"
+          required>
+      </div>
+
+      <button type="submit">Registrarse</button>
+
+      <div *ngIf="successMessage" class="success">
+        {{ successMessage }}
+      </div>
+
+      <div *ngIf="errorMessage" class="error">
+        {{ errorMessage }}
+      </div>
+    </form>
+  </div>
+</div>
